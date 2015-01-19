@@ -24,6 +24,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'devise', '~> 3.4.1'
 
+gem 'better'
+
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
@@ -34,6 +36,10 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+end
+
+group :development do
+  gem "better_errors"
 end
 
 # Use ActiveModel has_secure_password
