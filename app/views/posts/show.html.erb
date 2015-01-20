@@ -1,18 +1,16 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<%= image_tag @post.image.url(:medium) %>
-
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<% if @post.user == current_user %>
-  <%= link_to 'Edit', edit_post_path(@post) %> |
-<% end %>  
-<%= link_to 'Back', posts_path %>
+<div class="row">
+  <div class="col-md-8">
+    <div class="container-fluid" style="background-color: white; padding: 25px;">
+      <h1><%= @post.title %></h1>
+      <p>By <em><%= @post.user.email %></em> at <%= @post.created_at %>    
+      <% if @post.user == current_user %>
+        <%= link_to 'Edit', edit_post_path(@post) %> |
+      <% end %>  
+      </p>
+      <%= image_tag @post.image.url() %>
+    <p><%= @post.body %></p>
+    <%= link_to 'Back', posts_path %>
+    </div>
+  </div>  
+</div>

@@ -6,13 +6,14 @@
             <div class="col-md-9">
               <div class="container-fluid">
                 <h2><%=  post.title %></h2>
-                <p> By <em><%=  post.user_id %></em></p>
+                <p> By <em><%=  post.user.email %></em> at <em><%=  post.created_at %></em> 
+                <% if current_user == post.user %>
+                  <%= link_to 'Edit', edit_post_path(post) %>
+                  <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>   
+                </p>           
                 <p><%= truncate post.body, length: 350 %></p>
                 <%= link_to 'Read More', post, class:"btn btn-danger" %>
-                <% if current_user == post.user %>
-                  <td><%= link_to 'Edit', edit_post_path(post) %></td>
-                  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                <% end %>              
               </div>
             </div>
             <div class="col-md-3">
