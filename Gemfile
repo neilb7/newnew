@@ -28,6 +28,12 @@ gem 'better'
 
 gem 'paperclip'
 
+gem 'will_paginate', '~> 3.0.6'
+
+# gem 'aws-sdk', '~> 1.61.0'
+
+# gem 'nokogiri', '~> 1.6.5'
+
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 

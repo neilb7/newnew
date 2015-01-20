@@ -1,34 +1,31 @@
-<h1>Listing posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>User</th>
-      <th>Image</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
-        <td><%= post.user_id %></td>
-        <td><%= image_tag post.image.url(:medium) %></td>
-        <td><%= link_to 'Show', post %></td>
-        <% if current_user == post.user %>
-          <td><%= link_to 'Edit', edit_post_path(post) %></td>
-          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if user_signed_in? %>
-  <%= link_to 'New Post', new_post_path %>
-<% end %>
+<div class="row">
+  <div class="col-md-8" >
+      <% @posts.each do |post| %>
+        <div class="row" style="padding-bottom: 20px; background-color: white; margin-bottom: 20px;">
+          <div class="container-fluid">
+            <div class="col-md-9">
+              <div class="container-fluid">
+                <h2><%=  post.title %></h2>
+                <p> By <em><%=  post.user_id %></em></p>
+                <p><%= truncate post.body, length: 350 %></p>
+                <%= link_to 'Read More', post, class:"btn btn-danger" %>
+                <% if current_user == post.user %>
+                  <td><%= link_to 'Edit', edit_post_path(post) %></td>
+                  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end %>              
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="container-fluid">
+                <%= image_tag post.image.url(:thumb) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= will_paginate @posts %>
+  </div>
+  <div class="col-md-4">
+    <!-- recent section -->
+  </div>    
+</div>
