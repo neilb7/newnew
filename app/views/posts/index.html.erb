@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-8" >
       <% @posts.each do |post| %>
-        <div class="row" style="padding-bottom: 20px; background-color: white; margin-bottom: 20px;">
+        <div class="row post-content">
           <div class="container-fluid">
             <div class="col-md-9">
               <div class="container-fluid">
-                <h2><%=  post.title %></h2>
+                <h2><%= link_to post.title, post %></h2>
                 <p> By <em><%=  post.user.email %></em> at <em><%=  post.created_at %></em> 
                 <% if current_user == post.user %>
                   <%= link_to 'Edit', edit_post_path(post) %>
@@ -13,13 +13,14 @@
                 <% end %>   
                 </p>           
                 <p><%= truncate post.body, length: 350 %></p>
-                <%= link_to 'Read More', post, class:"btn btn-danger" %>
               </div>
             </div>
             <div class="col-md-3">
-              <div class="container-fluid">
-                <%= image_tag post.image.url(:thumb) %>
-              </div>
+              <div class="row">
+                <div class="container-fluid" id="post-image">
+                  <%= image_tag post.image.url ,class:"img img-responsive" %>
+                </div>
+              </div>  
             </div>
           </div>
         </div>
