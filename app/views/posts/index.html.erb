@@ -17,9 +17,11 @@
             </div>
             <div class="col-md-3">
               <div class="row">
-                <div class="container-fluid" id="post-image">
-                  <%= image_tag post.image.url ,class:"img img-responsive" %>
-                </div>
+                <div class="col-md-12">  
+                  <div class="container-fluid" id="post-image">
+                    <%= image_tag post.image.url(:thumb), class:"img img-responsive" %>
+                  </div>
+                </div>  
               </div>  
             </div>
           </div>
